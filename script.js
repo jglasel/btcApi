@@ -51,8 +51,8 @@ dateBtn.addEventListener('click', async (e) => {
       var btcPickedPrice = await fetchBtc(pickedDate);
       var btcTodaysPrice = await fetchBtc(todaysDate);
       updateDom(btcPickedPrice, btcTodaysPrice);
-    } catch {
-      console.log('Error fetchBtc().onClick unsuccessful')
+    } catch (error) {
+      console.log(error)
     }
   }
 })
@@ -61,10 +61,10 @@ async function fetchBtc(date) {
   try {
     const response = await fetch(`https://api.coingecko.com/api/v3/coins/bitcoin/history?date=${date}`);
     const data = await response.json();
-    return data.market_data.current_price.eur
+    return data.market_data.current_price.eur;
   }
-  catch {
-    console.log('Error fetchBtc() unsuccessful')
+  catch (err) {
+    console.log(err)
   }
 }
 
