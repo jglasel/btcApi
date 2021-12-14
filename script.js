@@ -46,11 +46,17 @@ function updateDom(btcPickedPrice, btcTodaysPrice) {
 dateBtn.addEventListener('click', async (e) => {
   e.preventDefault();
 
+  console.log(dateInput.value)
   dateConversion(dateInput.value);
-
+  //check if empty
   if (!dateInput.value) {
-    alert('Please input date!')
-  } else {
+    alert('Please input date!');
+  }
+  //check if not in the future
+  else if (new Date(dateInput.value).getTime() > new Date().getTime()) {
+    alert('I wish I knew the future price of BTC!');
+  }
+  else {
     try {
       btcPickedPrice = await fetchBtc(pickedDate);
       btcTodaysPrice = await fetchBtc(todaysDate);
