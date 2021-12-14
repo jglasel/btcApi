@@ -6,48 +6,55 @@ const dateBtn = document.querySelector('.date__btn')
 const pickDate = document.querySelector('.pickDate');
 const pickEur = document.querySelector('.pickEur');
 const pickBtc = document.querySelector('.pickBtc');
-
 const todayDate = document.querySelector('.todayDate');
 const todayEur = document.querySelector('.todayEur');
 const todayBtc = document.querySelector('.todayBtc');
 
 
-var todaysDate = new Date().toLocaleDateString('en-GB').split('/').join('-');
+
+
+var todaysDate = new Date()
 var pickedDate = new Date();
 //sets default date
-dateInput.placeholder = todaysDate.split('-').join('/');
+
 
 
 var btcTodaysPrice = '';
 var btcPickedPrice = '';
 
-function updateDom() {
+
+function dateConversion(date) {
+  todaysDate = new Date().toLocaleDateString('en-GB').split('/').join('-');
+  pickedDate = new Date(date).toLocaleDateString('en-GB').split('/').join('-');
+}
+
+function updateDom(btcPickedPrice, btcTodaysPrice) {
+
   todayDate.innerHTML = todaysDate;
   pickDate.innerHTML = pickedDate;
 
-  var todayBtcValue = ((1 / btcPickedPrice) * 100) * btcTodaysPrice;
-  var pickBtcValue = 100;
-
+  var todayBtcValue = (((1 / btcPickedPrice) * 100) * btcTodaysPrice).toFixed(2);
+  //default 100 eur value for picked day
+  var pickBtcValue = '100.00';
 
   todayBtc.innerHTML = btcTodaysPrice.toFixed(2);
   pickBtc.innerHTML = btcPickedPrice.toFixed(2);
-
-
-  todayEur.innerHTML = todayBtcValue.toFixed(2);
-  pickEur.innerHTML = pickBtcValue.toFixed(2);
+  todayEur.innerHTML = todayBtcValue;
+  pickEur.innerHTML = pickBtcValue;
 }
 
 dateBtn.addEventListener('click', async (e) => {
   e.preventDefault();
 
+  dateConversion(dateInput.value);
+
   if (!dateInput.value) {
     alert('Please input date!')
   } else {
     try {
-      btcPickedPrice = await fetchBtc(dateInput.value.split('/').join('-'));
+      btcPickedPrice = await fetchBtc(pickedDate);
       btcTodaysPrice = await fetchBtc(todaysDate);
-      pickedDate = await new Date(dateInput.value).toLocaleDateString('en-GB').split('/').join('-');
-      updateDom()
+      updateDom(btcPickedPrice, btcTodaysPrice);
     } catch {
       console.log('Error fetchBtc().click unsuccessful')
     }
@@ -69,4 +76,3 @@ async function fetchBtc(date) {
 
 
 
-// .toFixed(2)
