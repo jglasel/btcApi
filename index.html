@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="favicon.png">
+  <script src="./script.js" defer></script>
+  <title>Senior FronEnd</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    th,
+    td {
+      border: 1px solid black;
+      width: 130px;
+      height: 30px;
+      text-align: center;
+    }
+
+    .btc {
+      width: 300px;
+    }
+
+    table {
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+  </style>
+</head>
+
+<body>
+  <form action="">
+
+    <input class='date__input' type="datetime" placeholder="01 / 01 / 2000">
+    <button type='submit' class="date__btn">Submit</button>
+  </form>
+
+  <table>
+    <tr>
+      <th>DATE</th>
+      <th>EUR</th>
+      <th>BTC Price</th>
+    </tr>
+    <tr>
+      <td class="pickDate"></td>
+      <td class="pickEur"></td>
+      <td class="pickBtc btc"></td>
+    </tr>
+    <tr>
+      <td class="todayDate"></td>
+      <td class="todayEur"></td>
+      <td class="todayBtc btc"></td>
+    </tr>
+  </table>
+
+
+</body>
+
+</html>
