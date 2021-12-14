@@ -39,15 +39,19 @@ function updateDom() {
 
 dateBtn.addEventListener('click', async (e) => {
   e.preventDefault();
-  try {
-    btcPickedPrice = await fetchBtc(dateInput.value.split('/').join('-'));
-    btcTodaysPrice = await fetchBtc(todaysDate);
-    pickedDate = await new Date(dateInput.value).toLocaleDateString('en-GB').split('/').join('-');
-    updateDom()
-  } catch {
-    console.log('Error fetchBtc().click unsuccessful')
-  }
 
+  if (!dateInput.value) {
+    alert('Please input date!')
+  } else {
+    try {
+      btcPickedPrice = await fetchBtc(dateInput.value.split('/').join('-'));
+      btcTodaysPrice = await fetchBtc(todaysDate);
+      pickedDate = await new Date(dateInput.value).toLocaleDateString('en-GB').split('/').join('-');
+      updateDom()
+    } catch {
+      console.log('Error fetchBtc().click unsuccessful')
+    }
+  }
 })
 
 async function fetchBtc(date) {
