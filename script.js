@@ -11,17 +11,8 @@ const todayEur = document.querySelector('.todayEur');
 const todayBtc = document.querySelector('.todayBtc');
 
 
-
-
-var todaysDate = new Date()
+var todaysDate = new Date();
 var pickedDate = new Date();
-//sets default date
-
-
-
-var btcTodaysPrice = '';
-var btcPickedPrice = '';
-
 
 function dateConversion(date) {
   todaysDate = new Date().toLocaleDateString('en-GB').split('/').join('-');
@@ -46,7 +37,6 @@ function updateDom(btcPickedPrice, btcTodaysPrice) {
 dateBtn.addEventListener('click', async (e) => {
   e.preventDefault();
 
-  console.log(dateInput.value)
   dateConversion(dateInput.value);
   //check if empty
   if (!dateInput.value) {
@@ -58,11 +48,11 @@ dateBtn.addEventListener('click', async (e) => {
   }
   else {
     try {
-      btcPickedPrice = await fetchBtc(pickedDate);
-      btcTodaysPrice = await fetchBtc(todaysDate);
+      var btcPickedPrice = await fetchBtc(pickedDate);
+      var btcTodaysPrice = await fetchBtc(todaysDate);
       updateDom(btcPickedPrice, btcTodaysPrice);
     } catch {
-      console.log('Error fetchBtc().click unsuccessful')
+      console.log('Error fetchBtc().onClick unsuccessful')
     }
   }
 })
