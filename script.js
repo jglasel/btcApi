@@ -67,8 +67,3 @@ async function fetchBtc(date) {
     console.log(err)
   }
 }
-
-
-
-
-
