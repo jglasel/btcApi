@@ -10,10 +10,12 @@ const todayDate = document.querySelector('.todayDate');
 const todayEur = document.querySelector('.todayEur');
 const todayBtc = document.querySelector('.todayBtc');
 
-
+//date
 var todaysDate = new Date();
 var pickedDate = new Date();
 
+
+//functions
 function dateConversion(date) {
   todaysDate = new Date().toLocaleDateString('en-GB').split('/').join('-');
   pickedDate = new Date(date).toLocaleDateString('en-GB').split('/').join('-');
