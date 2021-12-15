@@ -28,10 +28,10 @@ function updateDom(btcPickedPrice, btcTodaysPrice) {
   //default 100 eur value for picked day
   var pickBtcValue = '100.00';
 
-  todayBtc.innerHTML = btcTodaysPrice.toFixed(2);
-  pickBtc.innerHTML = btcPickedPrice.toFixed(2);
-  todayEur.innerHTML = todayBtcValue;
-  pickEur.innerHTML = pickBtcValue;
+  todayBtc.innerHTML = btcTodaysPrice.toFixed(2) + "€";
+  pickBtc.innerHTML = btcPickedPrice.toFixed(2) + "€";
+  todayEur.innerHTML = todayBtcValue + "€";
+  pickEur.innerHTML = pickBtcValue + "€";
 }
 
 dateBtn.addEventListener('click', async (e) => {
